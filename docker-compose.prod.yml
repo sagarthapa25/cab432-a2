@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    container_name: cab432_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sagarthapa25/cab432_app
+    ports:
+      - "443:8000"
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 8000

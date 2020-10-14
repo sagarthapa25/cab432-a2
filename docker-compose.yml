@@ -1,0 +1,29 @@
+version: "3"
+services:
+  frontend:
+    container_name: cab_client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: sagarthapa25/cab_client
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    tty: true
+  backend:
+    container_name: cab_server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: sagarthapa25/cab_server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
